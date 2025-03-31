@@ -70,6 +70,7 @@ app.use("/user", userRouter);
 
 > [!IMPORTANT]
 > Congratulations! You have a basic auth backend.
+> In case you get stuck, I will post the `class whiteboard` at the end of the class. This way you can come prepared for next class project.
 
 ### Let's prep the frontend
 
