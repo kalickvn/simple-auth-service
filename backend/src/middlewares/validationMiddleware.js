@@ -1,5 +1,6 @@
 const validateRegister = (req, res, next) => {
   // NOTE: NEVER Trust the client. Assume NOTHING!
+  console.log(req);
   const { username, password, email } = req.body;
 
   // NOTE: Lines you may use to check if the req.body is complete.
@@ -8,12 +9,21 @@ const validateRegister = (req, res, next) => {
   // !password
   // !email
   // return res.status(400).json({ message: "bad request" });
-
+  console.log(username);
+  if(!username || !password || !email){
+    return res.status(400).json({ message: "bad request" });
+  }
   // TODO:
   // check more complex validation logic here like:
   // - Check password length
   // - Validate email format using a regular expression
   // - Check if username contains invalid characters
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const usernameRegex = /^[a-zA-Z0-9_]+$/;
+
+  if (password.length < 6 || !emailRegex.test(email) || !usernameRegex.test(username)) {
+    return res.status(400).json({ message: "bad reques2t" });
+  }
 
   // TODO:
   // Req.body sanitation
@@ -36,7 +46,12 @@ const validateLogin = (req, res, next) => {
   // return res
   //   .status(400)
   //   .json({ message: "Please provide username and password" });
-
+  if(!username || !password){
+    return res.status(400).json({
+      message: "Please provide username and password"
+    })
+  }
+  console.log("pass1");
   // checking for more complex validation logic here like
   // - checking username format
   // - password format

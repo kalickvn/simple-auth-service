@@ -40,7 +40,7 @@ const login = async (req, res) => {
     // when MongoDB is setup, this should be an async function
     // await User.findOne();
     const user = User.findOne({ username });
-
+    console.log(user);
     if (!user) {
       return res.status(401).json({
         message: "invalid credentials",
