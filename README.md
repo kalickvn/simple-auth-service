@@ -36,14 +36,14 @@ Clone this repo before you start.
 3. Create the following endpoint to check your users and make sure it works! Test it.
 
 ```javascript
-// WARN: Experimental and must NOT be using in real world
+// WARN: Experimental and must NOT be used in real world
 // this is for demo purposes for you to check that the "model" users
 // has some actual users.
 // The following line must be in file `app.js`.
 app.use("/user", userRouter);
 ```
 
-4. After finishing all `TODOS/NOTES`, your backend should be "functional". To test it, use any client like `postman` test your `backend` so you can do the following the same order.
+4. After finishing all `TODOS/NOTES`, your backend should be "functional". To test it, use any client like `postman` test your `backend` so you can do the following in the same order.
 
 - `GET /`
   ![get-root](./project-assets/get-root.png)
