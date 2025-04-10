@@ -8,7 +8,7 @@ import express from "express";
 import morgan from "morgan";
 import helmet from "helmet";
 import cors from "cors";
-
+import MongoConnect from "./configuration/dbConfig.js";
 const app = express();
 
 app.use(express.json());
@@ -36,7 +36,7 @@ app.use(
 // TODO: Create a root endpoint saying "You have reached / the root of the server!"
 
 // TODO: fix the routes! Make sure its own route has the correct controller/handler
-
+MongoConnect();
 app.use("/auth",authRouter);
 
 // WARN: we can have middleware validators for any incoming request!
@@ -46,6 +46,6 @@ app.use("/auth",authRouter);
 // TODO: what is the middleware I can use before recipesRouter gets handled?
 app.use("/recipes",auth,recipesRouter);
 
-app.use("/user", userRouter);
+app.use("/user",auth, userRouter);
 
 export { app };

@@ -10,7 +10,7 @@ export const getRecipes = (req, res) => {
     message: `Now retrieving recipes for a special user. See below`,
     user: {
       id: req.user.id,
-      username: req.user.username,
+      email: req.user.email,
     },
   });
 };

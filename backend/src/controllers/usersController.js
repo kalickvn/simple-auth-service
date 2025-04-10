@@ -7,10 +7,10 @@ export const getUsers = (req, res) => {
   // NOTE: if this function gets called then I know that
   // a user has been logged in and req.user exits!
   res.status(200).json({
-    message: `Now retrieving Users`
-    // user: {
-    //   id: req.user.id,
-    //   username: req.user.username,
-    // },
+    message: `Now retrieving Users`,
+    user: {
+      id: req.user.id,
+      email: req.user.email,
+    },
   });
 };

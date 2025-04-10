@@ -1,4 +1,4 @@
-import { User } from "../models/userModels.js";
+import User from "../models/userModels.js";
 import { hashPassword, verifyPassword } from "../utils/password.js";
 import { createTokens, convertExpiryToMilliseconds } from "../utils/jwt.js";
 
@@ -9,12 +9,15 @@ const register = async (req, res) => {
   try {
     const hashedPassword = await hashPassword(req.body.password);
 
-    User.create({
-      username: req.body.username,
+    const createdUser = new User({
+      name: req.body.name,
       // always store the hashedPassword!
       password: hashedPassword,
       email: req.body.email,
+      role: 'customer'
     });
+    await createdUser.save();
+
   } catch (error) {
     console.error(error);
     // client sent bad request and not expected in the server!
@@ -24,7 +27,7 @@ const register = async (req, res) => {
   }
 
   res.status(201).json({
-    message: "user has been registered!",
+    message: "user has been registered!"
   });
 
   //NOTE: We could have sent a token now but SEPARATION OF CONCERNS. This
@@ -34,19 +37,21 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
   try {
-    const { username, password: potentialUserPassword } = req.body;
+    const { email, password: potentialUserPassword } = req.body;
 
     // NOTE: We are mocking up a database with an arry in models. Later
     // when MongoDB is setup, this should be an async function
     // await User.findOne();
-    const user = User.findOne({ username });
+    // const user = User.findOne({ username });
+    const user = await User.findOne({ email });
     console.log(user);
     if (!user) {
       return res.status(401).json({
         message: "invalid credentials",
       });
     }
-
+    console.log("====");
+     console.log(user.password);
     const passwordMatched = await verifyPassword(
       potentialUserPassword,
       user.password,
@@ -71,7 +76,7 @@ const login = async (req, res) => {
       token: tokens.accessToken,
       user: {
         id: user.id,
-        username: user.username,
+        email: user.email,
       },
     });
   } catch (error) {

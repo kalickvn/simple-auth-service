@@ -20,7 +20,7 @@ const auth = (req, res, next) => {
     });
 
     req.user = payload;
-
+    console.log(req.user);
     next();
   } catch (error) {
     res.status(403).json({
