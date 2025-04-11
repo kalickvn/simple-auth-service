@@ -5,14 +5,20 @@ import './App.css'
 import Header from './components/Header';
 import { Container } from 'react-bootstrap';
 import { Outlet } from 'react-router-dom';
-
+import Announcement from './components/Announcement';
+import Navigation from './components/Navigation';
+import Hero from './components/Hero';
+import ServiceHero from './components/Service';
 function App() {
   // const [count, setCount] = useState(0)
 
   return (
     <>
-    
+      <Announcement />
       <Header></Header>
+      <Navigation />
+      <Hero />
+      <ServiceHero/>
       <Outlet />
     </>
   )
