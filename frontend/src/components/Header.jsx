@@ -1,6 +1,7 @@
 // import { Navbar, Nav, Container, NavDropdown, Badge } from 'react-bootstrap';
-import { Navbar, Nav, Container, NavDropdown, Row, Col, Button } from 'react-bootstrap';
-import { FaSignInAlt, FaSignOutAlt } from 'react-icons/fa';
+// import { Navbar, Nav, Container, NavDropdown, Row, Col, Button } from 'react-bootstrap';
+// import { FaSignInAlt, FaSignOutAlt } from 'react-icons/fa';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import universalLogo from "../assets/plumbero-logo.png";
 

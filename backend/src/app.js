@@ -3,6 +3,7 @@ import { recipesRouter } from "./routes/recipesRoutes.js";
 import { auth } from "./middlewares/authMiddleware.js";
 
 import { userRouter } from "./routes/userRoutes.js";
+import { appointmentRouter } from "./routes/appointmentRoutes.js";
 // TODO: My server is not working!!!
 import express from "express";
 import morgan from "morgan";
@@ -47,5 +48,6 @@ app.use("/auth",authRouter);
 app.use("/recipes",auth,recipesRouter);
 
 app.use("/user",auth, userRouter);
+app.use("/appointments",auth, appointmentRouter);
 
 export { app };

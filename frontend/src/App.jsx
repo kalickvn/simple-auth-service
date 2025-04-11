@@ -9,6 +9,7 @@ import Announcement from './components/Announcement';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import ServiceHero from './components/Service';
+import AppointmentBooking from './components/AppointmentBooking';
 function App() {
   // const [count, setCount] = useState(0)
 
@@ -19,6 +20,7 @@ function App() {
       <Navigation />
       <Hero />
       <ServiceHero/>
+      <AppointmentBooking />
       <Outlet />
     </>
   )
