@@ -1,5 +1,6 @@
 import { request } from "express";
 import Appointment from "../models/appointmentModels.js";
+
 const makeAppointment = async (req, res) => {
   try {
       
@@ -10,8 +11,8 @@ const makeAppointment = async (req, res) => {
         phone: req.body.phone,
         date: req.body.date,
         time: req.body.time,
-        description: req.body.description
-        
+        description: req.body.description,
+        photo: req.file?.path
       });
       await createdAppointment.save();
   

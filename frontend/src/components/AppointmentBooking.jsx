@@ -4,20 +4,36 @@ import axios from 'axios';
 import { Container, Form, Button, Modal, Alert } from 'react-bootstrap';
 
 function PlumbingBookingForm() {
-  const [form, setForm] = useState({ name: '', phone: '', date: '', time: '', description: '' });
+  const [form, setForm] = useState({ name: '', phone: '', date: '', time: '', description: '', photo: null });
   const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState(null);
   const API_URL = import.meta.env.VITE_API_URL;
   const token = localStorage.getItem('token');
+  const [photo, setPhoto] = useState(null);
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleFileChange = (e) => {
+    console.log("file change");
+    setPhoto(e.target.files[0]);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
+
+    const formData = new FormData();
+    Object.entries(form).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
+    console.log("photo");
+    console.log(photo);
+    if (photo) formData.append('photo', photo);
+
     try {
-      const res = await axios.post(`${API_URL}/appointments`,form,{
+      const res = await axios.post(`${API_URL}/appointments`,formData,{
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -59,6 +75,12 @@ function PlumbingBookingForm() {
           <Form.Label>Description</Form.Label>
           <Form.Control name="description" value={form.description} onChange={handleChange} required as="textarea" rows={3} />
         </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Upload Photo (Optional)</Form.Label>
+          <Form.Control type="file" accept="image/*" name="photo" onChange={handleFileChange} />
+        </Form.Group>
+        
         <Button type="submit">Book Appointment</Button>
       </Form>
 

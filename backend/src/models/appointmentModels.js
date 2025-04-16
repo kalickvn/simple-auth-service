@@ -13,6 +13,7 @@ const appointmentSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  photo: String
 });
 
 export default mongoose.models.Appointment || mongoose.model("Appointment", appointmentSchema);

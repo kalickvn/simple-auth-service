@@ -48,6 +48,7 @@ app.use("/auth",authRouter);
 app.use("/recipes",auth,recipesRouter);
 
 app.use("/user",auth, userRouter);
+app.use('/uploads', express.static('uploads')); // serve images
 app.use("/appointments",auth, appointmentRouter);
 
 export { app };
